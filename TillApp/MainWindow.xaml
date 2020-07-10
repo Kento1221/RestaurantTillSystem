@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TillApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowStyle="None" Background="#FFA6A6A6">
+        Title="MainWindow" Height="1080" Width="1920" WindowStyle="None" Background="#FFA6A6A6" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350"/>
@@ -21,19 +21,17 @@
         <Grid 
             x:Name="MenuBarGrid" 
             Grid.ColumnSpan="2" 
-            Background="BlueViolet" 
-            MouseDown="MenuBarGrid_MouseDown">
+            Background="BlueViolet" >
             <DockPanel 
                 LastChildFill="False">
-                <Button 
+            <Button 
                     DockPanel.Dock="Right"
                     x:Name="CloseButton" 
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
-                    Foreground="White" 
-                    Click="CloseButton_Click">
-                    <materialDesign:PackIcon Kind="Power"/>
+                    Foreground="White" >
+                <materialDesign:PackIcon Kind="Power"/>
                 </Button>
                 <Button 
                     DockPanel.Dock="Right"

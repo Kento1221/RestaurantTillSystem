@@ -1,0 +1,168 @@
+﻿<Window x:Class="TillApp.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TillApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="1080" Width="1920"  WindowStyle="None" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="600"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--#region MenuBar-->
+        <Grid Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <Image Source="Resources/images/Hero-Image-1.jpg" Stretch="Fill"/>
+        </Grid>
+        <Grid 
+            x:Name="MenuBarGrid" 
+            Grid.ColumnSpan="3" 
+            Background="BlueViolet" 
+            Opacity=".9">
+            <DockPanel 
+                LastChildFill="False">
+                <Button 
+                    DockPanel.Dock="Right"
+                    x:Name="CloseButton" 
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                    Background="{x:Null}" 
+                    BorderBrush="{x:Null}" 
+                    Foreground="White">
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
+                <Button 
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                    Background="{x:Null}" 
+                    BorderBrush="{x:Null}" 
+                    Foreground="White">
+                    <materialDesign:PackIcon Kind="WindowMaximize"/>
+                </Button>
+                <Button 
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                    Background="{x:Null}" 
+                    BorderBrush="{x:Null}" 
+                    Foreground="White">
+                    <materialDesign:PackIcon Kind="About"/>
+                </Button>
+                <Label 
+                    Name="LiveTimeLabel" 
+                    Content="%DATE%" 
+                    DockPanel.Dock="Left"
+                    Margin="10"
+                    FontFamily="Arial"
+                    FontSize="18" 
+                    FontWeight="Bold" 
+                    Foreground="White" />
+
+                <Label 
+                    Name="DateLabel" 
+                    Content="%TIME%" 
+                    DockPanel.Dock="Left"
+                    Margin="10"
+                    FontFamily="Arial"
+                    FontSize="18" 
+                    FontWeight="Bold" 
+                    Foreground="White" />
+
+            </DockPanel>
+        </Grid>
+        <!--#endregion-->
+        <Grid 
+            Grid.Column="1" 
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            Background="White" 
+            Opacity=".95">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid 
+                Grid.Row="1" 
+                Grid.Column="1">
+                <Image 
+                    Source="Resources/images/Logo.jpg"/>
+            </Grid>
+            <DockPanel 
+                Grid.Column="1"
+                Grid.Row="2"
+                LastChildFill="False"        >
+                <StackPanel 
+                    Orientation="Vertical"
+                    Margin="25">
+                    <StackPanel 
+                        Orientation="Vertical" 
+                        Margin="0,15,0,0">
+                        <Label 
+                            Content="Username:"/>
+                        <TextBox 
+                            x:Name="Username" 
+                            Text="" 
+                            Margin="15,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel 
+                        Orientation="Vertical"
+                        Margin="0,25,0,0">
+                        <Label 
+                            Content="Password:"/>
+                        <TextBox 
+                            x:Name="Password" 
+                            Text="" 
+                            Margin="15,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel 
+                        Orientation="Horizontal" 
+                        DockPanel.Dock="Bottom" 
+                        Margin="0,50,0,0">
+                        <Button 
+                            x:Name="Clear_Button" 
+                            DockPanel.Dock="Bottom" 
+                            Width="125"
+                            Margin="5,0,0,0">
+                            Clear
+                        </Button>
+                        <Button 
+                            x:Name="Enter_Button" 
+                            DockPanel.Dock="Bottom"
+                            Width="200" 
+                            Margin="15,0,0,0">
+                            Enter
+                        </Button>
+                    </StackPanel>
+                    <Label 
+                        HorizontalAlignment="Center" 
+                        Margin="0,15"
+                        Content="Wrong username or password! Try again, please!"
+                        Visibility="Hidden"/>
+                </StackPanel>
+            </DockPanel>
+            <Grid 
+                x:Name="Login_Footer"
+                Grid.Column="0"
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                Height="50"
+                Background="BlueViolet"
+                VerticalAlignment="Bottom">
+            </Grid>  
+        </Grid>
+    </Grid>
+</Window>

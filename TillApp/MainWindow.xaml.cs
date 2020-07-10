@@ -36,14 +36,6 @@ namespace TillApp
             DateLabel.Content = DateTime.Now.ToString("dd.MM.yyyy");
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void MenuBarGrid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
+       
     }
 }
