@@ -50,7 +50,7 @@
                     <materialDesign:PackIcon Kind="Account"/>
                 </Button>
                 <Label 
-                    Name="LiveTimeLabel" 
+                    Name="Time_Label" 
                     Content="%DATE%" 
                     DockPanel.Dock="Left"
                     Margin="10"
@@ -60,7 +60,7 @@
                     Foreground="White" />
                 
                 <Label 
-                    Name="DateLabel" 
+                    Name="Date_Label" 
                     Content="%TIME%" 
                     DockPanel.Dock="Left"
                     Margin="10"

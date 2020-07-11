@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TillApp.Source;
 
 namespace TillApp
 {
@@ -22,6 +23,20 @@ namespace TillApp
         public LoginWindow()
         {
             InitializeComponent();
+            Clock clock = new Clock(Time_Label, Date_Label);
+            clock.StartClock();
+        }
+
+        private void Clear_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Username_Box.Text = "";
+            Password_Box.Password = "";
+        }
+
+        private void Enter_Button_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Authentication of Login and Password
+            //TODO: Success: Proceed to MainWindow
         }
     }
 }

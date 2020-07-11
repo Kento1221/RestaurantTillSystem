@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TillApp.Source;
 
 namespace TillApp
 {
@@ -24,18 +25,8 @@ namespace TillApp
         public MainWindow()
         {
             InitializeComponent();
-            DispatcherTimer LiveTime = new DispatcherTimer();
-            LiveTime.Interval = TimeSpan.FromSeconds(1);
-            LiveTime.Tick += timer_Tick;
-            LiveTime.Start();
+            Clock clock = new Clock(Time_Label, Date_Label);
+            clock.StartClock();
         }
-
-        void timer_Tick(object sender, EventArgs e)
-        {
-            LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm:ss");
-            DateLabel.Content = DateTime.Now.ToString("dd.MM.yyyy");
-        }
-
-       
     }
 }
