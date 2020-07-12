@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,14 +30,21 @@ namespace TillApp
 
         private void Clear_Button_Click(object sender, RoutedEventArgs e)
         {
-            Username_Box.Text = "";
-            Password_Box.Password = "";
+            Username_Box.Text = String.Empty;
+            Password_Box.Password = String.Empty;
         }
 
         private void Enter_Button_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Authentication of Login and Password
-            //TODO: Success: Proceed to MainWindow
+            using(Connection connection = new Connection("RestaurantMainDatabase"))
+            {
+                DataContext db = new DataContext(@"Database\RestaurantDatabase.mdf");
+                Table<Employees> employees = db.GetTable<Employees>();//Needs Entity
+                var query = from results in employees
+                            where (employees.Username = Username_Box.Text) && (employees.Password = Password_Box.Password)
+                            select (Name, Surname)//Is it correct?
+                //TODO: Success: Proceed to MainWindow
+            }
         }
     }
 }
