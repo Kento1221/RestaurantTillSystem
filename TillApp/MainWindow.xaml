@@ -26,7 +26,8 @@
                 LastChildFill="False">
             <Button 
                     DockPanel.Dock="Right"
-                    x:Name="CloseButton" 
+                    x:Name="Close_Button"
+                    Click="Close_Button_Click"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
@@ -51,7 +52,7 @@
                 </Button>
                 <Label 
                     Name="Time_Label" 
-                    Content="%DATE%" 
+                    Content="" 
                     DockPanel.Dock="Left"
                     Margin="10"
                     FontFamily="Arial"
@@ -61,7 +62,7 @@
                 
                 <Label 
                     Name="Date_Label" 
-                    Content="%TIME%" 
+                    Content="" 
                     DockPanel.Dock="Left"
                     Margin="10"
                     FontFamily="Arial"
@@ -90,7 +91,7 @@
                             FontFamily="Arial" 
                             FontSize="24" 
                             FontWeight="Bold"
-                            Text="Orkisz"/>
+                            Text=""/>
                         <TextBlock 
                             x:Name="Customer_Table" 
                             DockPanel.Dock="Right" 

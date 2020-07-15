@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EFDataAccess.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
@@ -16,11 +18,11 @@ using TillApp.Source;
 
 namespace TillApp
 {
-    /// <summary>
-    /// Logika interakcji dla klasy LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
+
+        RestaurantDatabaseEntities entities = new RestaurantDatabaseEntities();
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -28,23 +30,45 @@ namespace TillApp
             clock.StartClock();
         }
 
-        private void Clear_Button_Click(object sender, RoutedEventArgs e)
+        private void Clear_Button_Click(object sender, RoutedEventArgs e) => ClearBoxes();
+
+        private void Enter_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Username_Box.Text != String.Empty && Password_Box.Password != String.Empty)
+            {
+
+                var employees = entities.Employees
+                        .Where(x => x.Username == Username_Box.Text && x.Password == Password_Box.Password)
+                        .ToList();
+
+
+                if(employees.Count == 1)
+                {
+                    var v = new MainWindow();
+                    v.Show();
+                    Close();
+                }
+                else 
+                {
+                    Error_Label.Visibility = Visibility.Visible;
+                    ClearBoxes();
+                }
+            }
+
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
+
+
+        private void ClearBoxes()
         {
             Username_Box.Text = String.Empty;
             Password_Box.Password = String.Empty;
         }
 
-        private void Enter_Button_Click(object sender, RoutedEventArgs e)
-        {
-            using(Connection connection = new Connection("RestaurantMainDatabase"))
-            {
-                DataContext db = new DataContext(@"Database\RestaurantDatabase.mdf");
-                Table<Employees> employees = db.GetTable<Employees>();//Needs Entity
-                var query = from results in employees
-                            where (employees.Username = Username_Box.Text) && (employees.Password = Password_Box.Password)
-                            select (Name, Surname)//Is it correct?
-                //TODO: Success: Proceed to MainWindow
-            }
-        }
+        private void Maximize_Button_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Maximized;
+
+        private void About_Button_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Created by Kamil Orkisz.");
     }
 }

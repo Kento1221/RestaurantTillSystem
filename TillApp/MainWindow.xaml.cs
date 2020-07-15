@@ -17,9 +17,7 @@ using TillApp.Source;
 
 namespace TillApp
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -28,5 +26,7 @@ namespace TillApp
             Clock clock = new Clock(Time_Label, Date_Label);
             clock.StartClock();
         }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
     }
 }

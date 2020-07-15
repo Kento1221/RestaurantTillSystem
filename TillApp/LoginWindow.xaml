@@ -32,6 +32,7 @@
                 LastChildFill="False">
                 <Button 
                     x:Name="Close_Button" 
+                    Click="Close_Button_Click"
                     DockPanel.Dock="Right"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
@@ -41,6 +42,7 @@
                 </Button>
                 <Button 
                     x:Name="Maximize_Button"
+                    Click="Maximize_Button_Click"
                     DockPanel.Dock="Right"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
@@ -50,6 +52,7 @@
                 </Button>
                 <Button 
                     x:Name="About_Button"
+                    Click="About_Button_Click"
                     DockPanel.Dock="Right"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
@@ -153,6 +156,7 @@
                         </Button>
                     </StackPanel>
                     <Label 
+                        x:Name="Error_Label"
                         HorizontalAlignment="Center" 
                         Margin="0,15"
                         TextBlock.Foreground="Red"
