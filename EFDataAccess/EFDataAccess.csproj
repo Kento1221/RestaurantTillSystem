@@ -111,10 +111,10 @@
       <LastGenOutput>Employee1.cs</LastGenOutput>
     </Content>
     <Content Include="RestaurantDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="RestaurantDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>RestaurantDatabase.mdf</DependentUpon>
     </Content>
   </ItemGroup>
