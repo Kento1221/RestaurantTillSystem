@@ -37,23 +37,30 @@ namespace TillApp
 
             if (Username_Box.Text != String.Empty && Password_Box.Password != String.Empty)
             {
-
-                var employees = entities.Employees
-                        .Where(x => x.Username == Username_Box.Text && x.Password == Password_Box.Password)
-                        .ToList();
-
-
-                if(employees.Count == 1)
+                try
                 {
-                    var v = new MainWindow();
-                    v.Show();
-                    Close();
+                    var employees = entities.Employees
+                            .Where(x => x.Username == Username_Box.Text && x.Password == Password_Box.Password)
+                            .ToList();
+
+                    if(employees.Count == 1)
+                    {
+                        var v = new MainWindow();
+                        v.Show();
+                        Close();
+                    }
+                    else 
+                    {
+                        Error_Label.Visibility = Visibility.Visible;
+                        ClearBoxes();
+                    }
                 }
-                else 
+                catch (Exception ex)
                 {
-                    Error_Label.Visibility = Visibility.Visible;
-                    ClearBoxes();
+                    MessageBox.Show(ex.Message);
                 }
+
+
             }
 
         }

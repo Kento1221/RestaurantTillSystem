@@ -68,47 +68,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Employee.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Employee.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Employee.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Employee.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Employee1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Employee.tt</DependentUpon>
+    <Compile Include="Models\Dishes.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employees.cs">
-      <DependentUpon>Employee.tt</DependentUpon>
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Restaurant.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Restaurant.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Restaurant.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Restaurant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Restaurant.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\Employee.edmx">
+    <EntityDeploy Include="Models\Restaurant.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Employee.Designer.cs</LastGenOutput>
+      <LastGenOutput>Restaurant.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\Employee.edmx.diagram">
-      <DependentUpon>Employee.edmx</DependentUpon>
+    <None Include="Models\Restaurant.edmx.diagram">
+      <DependentUpon>Restaurant.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\Employee.Context.tt">
+    <Content Include="Models\Restaurant.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Employee.edmx</DependentUpon>
-      <LastGenOutput>Employee.Context.cs</LastGenOutput>
+      <DependentUpon>Restaurant.edmx</DependentUpon>
+      <LastGenOutput>Restaurant.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Employee.tt">
+    <Content Include="Models\Restaurant.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Employee.edmx</DependentUpon>
-      <LastGenOutput>Employee1.cs</LastGenOutput>
+      <DependentUpon>Restaurant.edmx</DependentUpon>
+      <LastGenOutput>Restaurant.cs</LastGenOutput>
     </Content>
     <Content Include="RestaurantDatabase.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

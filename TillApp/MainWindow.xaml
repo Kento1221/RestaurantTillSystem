@@ -219,17 +219,38 @@
                     <WrapPanel
                         Orientation="Horizontal"
                         Margin="25">
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
-                        <Button Width="300" Height="80" Background="LightGray" ></Button>
+                        <Button x:Name="dish_menu_button0"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button1"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button2"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button3"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button4"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button5"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button6"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button7"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button8"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button9"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button10" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button11" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button12" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button13" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button14" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button15" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button16" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button17" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button18" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button19" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button20" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button21" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button22" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button23" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button24" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button25" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button26" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button27" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button28" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button29" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button30" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
+                        <Button x:Name="dish_menu_button31" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
                     </WrapPanel>
                 </Grid>
             </StackPanel>
