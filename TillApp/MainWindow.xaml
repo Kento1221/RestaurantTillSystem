@@ -20,6 +20,7 @@
         <!--#region MenuBar-->
         <Grid 
             x:Name="MenuBarGrid" 
+            MouseDown="Window_MouseDown"
             Grid.ColumnSpan="2" 
             Background="BlueViolet" >
             <DockPanel 
@@ -36,11 +37,12 @@
                 </Button>
                 <Button 
                     DockPanel.Dock="Right"
+                    Click="Maximize_Button_Click"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
                     Foreground="White">
-                    <materialDesign:PackIcon Kind="Bell"/>
+                    <materialDesign:PackIcon Kind="WindowMaximize"/>
                 </Button>
                 <Button 
                     DockPanel.Dock="Right"
@@ -48,7 +50,7 @@
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
                     Foreground="White">
-                    <materialDesign:PackIcon Kind="Account"/>
+                    <materialDesign:PackIcon Kind="InfoCircle"/>
                 </Button>
                 <Label 
                     Name="Time_Label" 
@@ -128,51 +130,13 @@
                         Height="800" 
                         Width="350"
                         Background="LightGray">
+                        <!--#region Order list text block-->
                         <TextBlock x:Name="Order_List"
                             FontSize="20" 
                             FontFamily="Arial" 
                             Margin="35,15,0,0">
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
-                                1. Spring Rolls.............12 zł<LineBreak/>
                         </TextBlock>
+                        <!--#endregion Order list text block--> 
                     </ScrollViewer>
                     <!--#region Total price-->
                     <DockPanel LastChildFill="False" Margin="15">
@@ -189,7 +153,7 @@
                             TextAlignment="Right" 
                             Text="xxx zł"/>
                     </DockPanel>
-                    <!--#endregion-->
+                    <!--#endregion Total price-->
                 </StackPanel>
             </ScrollViewer>
         </Grid>
@@ -205,56 +169,30 @@
                     Grid.RowSpan="8" >
                 <WrapPanel
                     Orientation="Horizontal">
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0">Starters</Button>
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Pho</Button>
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Curry</Button>
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Noodles</Button>
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Kids</Button>
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Sides</Button>
-                    <Button Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Drinks</Button>
-                    <Button Background="Gold" Width="330" Height="50" Margin="10,0,0,0" TextBlock.Foreground="Black">Payment</Button>
+                    <Button x:Name="Starters_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Starters_button_Click">Starters</Button>
+                    <Button x:Name="Pho_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Pho_button_Click">Pho</Button>
+                    <Button x:Name="Curry_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Curry_button_Click" >Curry</Button>
+                    <Button x:Name="Noodles_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Noodles_button_Click">Noodles</Button>
+                    <Button x:Name="Kids_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Kids_button_Click">Kids</Button>
+                    <Button x:Name="Sides_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Sides_button_Click">Sides</Button>
+                    <Button x:Name="Drinks_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Drinks</Button>
+                    <Button x:Name="Payment_button" Background="Gold" Width="330" Height="50" Margin="10,0,0,0" TextBlock.Foreground="Black">Payment</Button>
                 </WrapPanel>
+                <!--#region Dish menu buttons-->
                 <Grid 
                     x:Name="Dish_Menu">
-                    <WrapPanel
-                        Orientation="Horizontal"
-                        Margin="25">
-                        <Button x:Name="dish_menu_button0"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button1"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button2"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button3"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button4"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button5"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button6"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button7"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button8"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button9"  Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button10" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button11" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button12" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button13" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button14" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button15" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button16" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button17" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button18" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button19" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button20" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button21" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button22" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button23" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button24" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button25" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button26" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button27" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button28" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button29" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button30" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                        <Button x:Name="dish_menu_button31" Width="300" Height="80" Background="LightGray" IsEnabled="False" Visibility="Hidden"></Button>
-                    </WrapPanel>
+                    <ScrollViewer>
+                        <WrapPanel x:Name="Dish_Menu_WrapPanel"
+                            Orientation="Horizontal"
+                            Margin="25">
+                        </WrapPanel>
+                    </ScrollViewer>
                 </Grid>
+                <!--#endregion Dish menu buttons-->
             </StackPanel>
         </Grid>
+        <!--#endregion RightSideMenu--> 
+        <!--#region  Footer Bar-->
         <Grid 
             x:Name="Footer_Bar"
             Grid.Row="2"
@@ -262,5 +200,6 @@
             Background="BlueViolet" >
             
         </Grid>
+        <!--#endregion Footer Bar--> 
     </Grid>
 </Window>

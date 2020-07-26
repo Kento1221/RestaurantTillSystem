@@ -197,6 +197,7 @@
     </ApplicationDefinition>
     <Compile Include="Source\Clock.cs" />
     <Compile Include="Source\Dish.cs" />
+    <Compile Include="Source\OrderList.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
