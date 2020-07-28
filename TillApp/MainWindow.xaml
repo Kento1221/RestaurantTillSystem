@@ -35,14 +35,14 @@
                     Foreground="White" >
                 <materialDesign:PackIcon Kind="Power"/>
                 </Button>
-                <Button 
+                <Button x:Name="WindowState_Button"
                     DockPanel.Dock="Right"
                     Click="Maximize_Button_Click"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
                     Foreground="White">
-                    <materialDesign:PackIcon Kind="WindowMaximize"/>
+                    <materialDesign:PackIcon x:Name ="WindowState_Button_Icon" Kind="WindowRestore"/>
                 </Button>
                 <Button 
                     DockPanel.Dock="Right"
@@ -122,7 +122,7 @@
                             Text="13:54"/>
                     </DockPanel>
                     <ScrollViewer 
-                        x:Name="Scroll_Content" 
+                        x:Name="Order_List_ScrollViewer" 
                         VerticalScrollBarVisibility="Auto" 
                         CanContentScroll="True" 
                         HorizontalAlignment="Right" 
@@ -131,12 +131,23 @@
                         Width="350"
                         Background="LightGray">
                         <!--#region Order list text block-->
-                        <TextBlock x:Name="Order_List"
-                            FontSize="20" 
-                            FontFamily="Arial" 
-                            Margin="35,15,0,0">
-                        </TextBlock>
-                        <!--#endregion Order list text block--> 
+                        <DockPanel LastChildFill="False">
+                            <TextBlock x:Name="Order_List_Items"
+                                DockPanel.Dock="Left"
+                                FontSize="18" 
+                                FontFamily="Consolas"
+                                Width="235"
+                                Margin="35,15,0,0">
+                            </TextBlock>
+                            <TextBlock x:Name="Order_List_Price"
+                                DockPanel.Dock="Right"
+                                FontSize="18" 
+                                FontFamily="Consolas"
+                                Width="75"
+                                Margin="0,15,0,0">
+                            </TextBlock>
+                        </DockPanel>
+                            <!--#endregion Order list text block--> 
                     </ScrollViewer>
                     <!--#region Total price-->
                     <DockPanel LastChildFill="False" Margin="15">
@@ -147,11 +158,11 @@
                             FontWeight="Bold"
                             Text="Total:"/>
                         <TextBlock 
+                            x:Name="Total_Amount"
                             DockPanel.Dock="Right" 
                             FontSize="24" 
                             FontFamily="Arial"
-                            TextAlignment="Right" 
-                            Text="xxx zł"/>
+                            TextAlignment="Right" />
                     </DockPanel>
                     <!--#endregion Total price-->
                 </StackPanel>
@@ -181,7 +192,11 @@
                 <!--#region Dish menu buttons-->
                 <Grid 
                     x:Name="Dish_Menu">
-                    <ScrollViewer>
+                    <ScrollViewer 
+                        VerticalScrollBarVisibility="Auto" 
+                        CanContentScroll="True" 
+                        HorizontalAlignment="Right" 
+                        FlowDirection="LeftToRight">
                         <WrapPanel x:Name="Dish_Menu_WrapPanel"
                             Orientation="Horizontal"
                             Margin="25">

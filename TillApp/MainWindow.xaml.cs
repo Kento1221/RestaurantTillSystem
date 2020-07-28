@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,7 +15,8 @@ namespace TillApp
     public partial class MainWindow : Window
     {
         public enum DishTypes { Pho, Starters, Curry, Noodles, Kids, Sides }
-        RestaurantDatabaseEntities entities = new RestaurantDatabaseEntities();
+        readonly RestaurantDatabaseEntities entities = new RestaurantDatabaseEntities();
+        private readonly char[] buttonConstName = "Dish_Menu_Button_".ToArray();
 
         //Stores all dishes from database
         List<Dish> dishList = new List<Dish>();
@@ -24,6 +26,8 @@ namespace TillApp
         List<Dish> orderList = new List<Dish>();
         //Stores dish types
         DishTypes currentlySelectedType = new DishTypes();
+
+        private double Total = 0f;
 
         public MainWindow()
         {
@@ -59,7 +63,7 @@ namespace TillApp
         }
 
         /// <summary>
-        /// Selects a certain type of dish from populated dishList.
+        /// Selects a certain type of dish from populated dishList and prints it on the screen.
         /// </summary>
         /// <param name="dishType">String of dish type.</param>
         public void SelectDishes(DishTypes dishType)
@@ -99,16 +103,27 @@ namespace TillApp
             }
         }
 
-
+        /// <summary>
+        /// Removes all buttons from Dish_Menu_WrapPanel element.
+        /// </summary>
         private void ClearButtons() => Dish_Menu_WrapPanel.Children.Clear();
 
-
-        private void PrintOrderList()
+        /// <summary>
+        /// Prints order items and prices from orderList list to the Order_List_Items and Order_List_Price textblock elements.
+        /// </summary>
+        private void PrintOrderList( )
         {
-            Order_List.Text = String.Empty;
-            foreach (var orderItem in orderList)
-            {
-                Order_List.Text += orderItem.Name+"\n";
+            Order_List_Items.Text = String.Empty;
+            Order_List_Price.Text = String.Empty;
+            int id = 1;
+
+            foreach (var item in orderList)
+            {                
+                string price = item.Price.ToString();
+                if (price.Length == 2 || price.Length == 1) price += ",00";
+               
+                Order_List_Items.Text += id++ + ". " + item.Name.Trim() + "\n";
+                Order_List_Price.Text += price + "\n";
             }
         }
 
@@ -116,7 +131,19 @@ namespace TillApp
 
         private void Close_Button_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
 
-        private void Maximize_Button_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Normal;
+        private void Maximize_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+                WindowState_Button_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowMaximize;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+                WindowState_Button_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowRestore;
+            }
+        }
 
         private void Starters_button_Click(object sender, RoutedEventArgs e) => SelectDishes(DishTypes.Starters);
 
@@ -134,13 +161,17 @@ namespace TillApp
         {
             //retrieving index from the button clicked.
             Button button = (Button)sender;
-            char[] charTab = "Dish_Menu_Button_".ToArray<char>();
-            string name = button.Name.Trim(charTab);
-            //end
+            string dishId = button.Name.Trim(buttonConstName);
 
-            //Adding dish to Order_List text block
-            orderList.Add(selectedDishList[Int32.Parse(name)]);
+            //Adding dish to Order_List text block and updating total.
+            Dish selectedDish = selectedDishList[Int32.Parse(dishId)];
+            orderList.Add(selectedDish);
+
             PrintOrderList();
+
+            //Updating total to pay label
+            Total +=selectedDish.Price;
+            Total_Amount.Text = Total.ToString() + " zł";
         }
 
         #endregion button click events
