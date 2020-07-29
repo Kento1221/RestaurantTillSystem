@@ -6,163 +6,153 @@
         xmlns:local="clr-namespace:TillApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowStyle="None" Background="#FFA6A6A6" WindowState="Maximized">
+        Title="MainWindow"
+        Height="1080"
+        Width="1920"
+        WindowStyle="None"
+        Background="#FFA6A6A6"
+        WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <!--#region MenuBar-->
-        <Grid 
-            x:Name="MenuBarGrid" 
-            MouseDown="Window_MouseDown"
-            Grid.ColumnSpan="2" 
-            Background="BlueViolet" >
-            <DockPanel 
-                LastChildFill="False">
-            <Button 
-                    DockPanel.Dock="Right"
-                    x:Name="Close_Button"
-                    Click="Close_Button_Click"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
-                    Background="{x:Null}" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White" >
-                <materialDesign:PackIcon Kind="Power"/>
+        <Grid x:Name="MenuBarGrid"
+              MouseDown="Window_MouseDown"
+              Grid.ColumnSpan="2"
+              Background="BlueViolet">
+            <DockPanel LastChildFill="False">
+                <Button DockPanel.Dock="Right"
+                        x:Name="Close_Button"
+                        Click="Close_Button_Click"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Foreground="White">
+                    <materialDesign:PackIcon Kind="Power" />
                 </Button>
                 <Button x:Name="WindowState_Button"
-                    DockPanel.Dock="Right"
-                    Click="Maximize_Button_Click"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
-                    Background="{x:Null}" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White">
-                    <materialDesign:PackIcon x:Name ="WindowState_Button_Icon" Kind="WindowRestore"/>
+                        DockPanel.Dock="Right"
+                        Click="Maximize_Button_Click"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Foreground="White">
+                    <materialDesign:PackIcon x:Name="WindowState_Button_Icon"
+                                             Kind="WindowRestore" />
                 </Button>
-                <Button 
-                    DockPanel.Dock="Right"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
-                    Background="{x:Null}" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White">
-                    <materialDesign:PackIcon Kind="InfoCircle"/>
+                <Button DockPanel.Dock="Right"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Foreground="White">
+                    <materialDesign:PackIcon Kind="InfoCircle" />
                 </Button>
-                <Label 
-                    Name="Time_Label" 
-                    Content="" 
-                    DockPanel.Dock="Left"
-                    Margin="10"
-                    FontFamily="Arial"
-                    FontSize="18" 
-                    FontWeight="Bold" 
-                    Foreground="White" />
-                
-                <Label 
-                    Name="Date_Label" 
-                    Content="" 
-                    DockPanel.Dock="Left"
-                    Margin="10"
-                    FontFamily="Arial"
-                    FontSize="18" 
-                    FontWeight="Bold" 
-                    Foreground="White" />
+                <Label Name="Time_Label"
+                       Content=""
+                       DockPanel.Dock="Left"
+                       Margin="10"
+                       FontFamily="Arial"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White" />
 
+                <Label Name="Date_Label"
+                       Content=""
+                       DockPanel.Dock="Left"
+                       Margin="10"
+                       FontFamily="Arial"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White" />
             </DockPanel>
         </Grid>
         <!--#endregion-->
         <!--#region LeftSideBar-->
-        <Grid 
-            x:Name="Transaction_Bar" 
-            Grid.Row="1" 
-            Background="White" Margin="0,0,1,0" >
+        <Grid x:Name="Transaction_Bar"
+              Grid.Row="1"
+              Background="White"
+              Margin="0,0,1,0">
             <ScrollViewer>
-                <StackPanel 
-                    Orientation="Vertical">
-                    <DockPanel 
-                        LastChildFill="False"
-                        Margin="0,15,0,5">
-                        <TextBlock 
-                            x:Name="Waiter_Name" 
-                            DockPanel.Dock="Left" 
-                            Margin="15,0,0,0" 
-                            FontFamily="Arial" 
-                            FontSize="24" 
-                            FontWeight="Bold"
-                            Text=""/>
-                        <TextBlock 
-                            x:Name="Customer_Table" 
-                            DockPanel.Dock="Right" 
-                            Margin="0,0,15,0" 
-                            FontFamily="Arial" 
-                            FontSize="24" 
-                            FontWeight="Bold"
-                            Text="T23"/>
+                <StackPanel Orientation="Vertical">
+                    <DockPanel LastChildFill="False"
+                               Margin="0,15,0,5">
+                        <TextBlock x:Name="Waiter_Name"
+                                   DockPanel.Dock="Left"
+                                   Margin="15,0,0,0"
+                                   FontFamily="Arial"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Text="" />
+                        <TextBlock x:Name="Customer_Table"
+                                   DockPanel.Dock="Right"
+                                   Margin="0,0,15,0"
+                                   FontFamily="Arial"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Text="T23" />
                     </DockPanel>
-                    <DockPanel
-                        LastChildFill="False"
-                        Margin="0,0,0,25">
-                        <TextBlock 
-                            x:Name="Customer_Date"  
-                            DockPanel.Dock="Right" 
-                            Margin="0,0,15,0" 
-                            FontFamily="Arial" 
-                            FontSize="18" 
-                            Text="04.07.2020"/>
-                        <TextBlock 
-                            x:Name="Customer_Time"  
-                            DockPanel.Dock="Left" 
-                            Margin="15,0,0,0" 
-                            FontFamily="Arial" 
-                            FontSize="18" 
-                            Text="13:54"/>
+                    <DockPanel LastChildFill="False"
+                               Margin="0,0,0,25">
+                        <TextBlock x:Name="Customer_Date"
+                                   DockPanel.Dock="Right"
+                                   Margin="0,0,15,0"
+                                   FontFamily="Arial"
+                                   FontSize="18"
+                                   Text="04.07.2020" />
+                        <TextBlock x:Name="Customer_Time"
+                                   DockPanel.Dock="Left"
+                                   Margin="15,0,0,0"
+                                   FontFamily="Arial"
+                                   FontSize="18"
+                                   Text="13:54" />
                     </DockPanel>
-                    <ScrollViewer 
-                        x:Name="Order_List_ScrollViewer" 
-                        VerticalScrollBarVisibility="Auto" 
-                        CanContentScroll="True" 
-                        HorizontalAlignment="Right" 
-                        FlowDirection="LeftToRight" 
-                        Height="800" 
-                        Width="350"
-                        Background="LightGray">
+                    <ScrollViewer x:Name="Order_List_ScrollViewer"
+                                  VerticalScrollBarVisibility="Auto"
+                                  CanContentScroll="True"
+                                  HorizontalAlignment="Right"
+                                  FlowDirection="LeftToRight"
+                                  Height="800"
+                                  Width="350"
+                                  Background="LightGray">
                         <!--#region Order list text block-->
                         <DockPanel LastChildFill="False">
                             <TextBlock x:Name="Order_List_Items"
-                                DockPanel.Dock="Left"
-                                FontSize="18" 
-                                FontFamily="Consolas"
-                                Width="235"
-                                Margin="35,15,0,0">
+                                       DockPanel.Dock="Left"
+                                       FontSize="18"
+                                       FontFamily="Consolas"
+                                       Width="235"
+                                       Margin="35,15,0,0">
                             </TextBlock>
                             <TextBlock x:Name="Order_List_Price"
-                                DockPanel.Dock="Right"
-                                FontSize="18" 
-                                FontFamily="Consolas"
-                                Width="75"
-                                Margin="0,15,0,0">
+                                       DockPanel.Dock="Right"
+                                       FontSize="18"
+                                       FontFamily="Consolas"
+                                       Width="75"
+                                       Margin="0,15,0,0">
                             </TextBlock>
                         </DockPanel>
-                            <!--#endregion Order list text block--> 
+                        <!--#endregion Order list text block-->
                     </ScrollViewer>
                     <!--#region Total price-->
-                    <DockPanel LastChildFill="False" Margin="15">
-                        <TextBlock 
-                            DockPanel.Dock="Left" 
-                            FontSize="24" 
-                            FontFamily="Arial" 
-                            FontWeight="Bold"
-                            Text="Total:"/>
-                        <TextBlock 
-                            x:Name="Total_Amount"
-                            DockPanel.Dock="Right" 
-                            FontSize="24" 
-                            FontFamily="Arial"
-                            TextAlignment="Right" />
+                    <DockPanel LastChildFill="False"
+                               Margin="15">
+                        <TextBlock DockPanel.Dock="Left"
+                                   FontSize="24"
+                                   FontFamily="Arial"
+                                   FontWeight="Bold"
+                                   Text="Total:" />
+                        <TextBlock x:Name="Total_Amount"
+                                   DockPanel.Dock="Right"
+                                   FontSize="24"
+                                   FontFamily="Arial"
+                                   TextAlignment="Right" />
                     </DockPanel>
                     <!--#endregion Total price-->
                 </StackPanel>
@@ -170,51 +160,95 @@
         </Grid>
         <!--#endregion-->
         <!--#region RightSideMenu-->
-        <Grid 
-            x:Name="Item_Menu" 
-            Grid.Column="1" 
-            Grid.Row="1" >
-            <StackPanel 
-                    Orientation="Vertical"
-                    Grid.ColumnSpan="8"
-                    Grid.RowSpan="8" >
-                <WrapPanel
-                    Orientation="Horizontal">
-                    <Button x:Name="Starters_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Starters_button_Click">Starters</Button>
-                    <Button x:Name="Pho_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Pho_button_Click">Pho</Button>
-                    <Button x:Name="Curry_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Curry_button_Click" >Curry</Button>
-                    <Button x:Name="Noodles_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Noodles_button_Click">Noodles</Button>
-                    <Button x:Name="Kids_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Kids_button_Click">Kids</Button>
-                    <Button x:Name="Sides_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" Click="Sides_button_Click">Sides</Button>
-                    <Button x:Name="Drinks_button" Background="DarkViolet" Width="160" Height="50" Margin="10,0,0,0" >Drinks</Button>
-                    <Button x:Name="Payment_button" Background="Gold" Width="330" Height="50" Margin="10,0,0,0" TextBlock.Foreground="Black">Payment</Button>
+        <Grid x:Name="Item_Menu"
+              Grid.Column="1"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--#region DishType Buttons-->
+            <StackPanel Grid.Row="0"
+                        Orientation="Vertical">
+                <WrapPanel Orientation="Horizontal">
+                    <Button x:Name="Starters_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            Click="Starters_button_Click">Starters</Button>
+                    <Button x:Name="Pho_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            Click="Pho_button_Click">Pho</Button>
+                    <Button x:Name="Curry_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            Click="Curry_button_Click">Curry</Button>
+                    <Button x:Name="Noodles_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            Click="Noodles_button_Click">Noodles</Button>
+                    <Button x:Name="Kids_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            Click="Kids_button_Click">Kids</Button>
+                    <Button x:Name="Sides_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            Click="Sides_button_Click">Sides</Button>
+                    <Button x:Name="Drinks_button"
+                            Background="DarkViolet"
+                            Width="160"
+                            Height="50"
+                            Margin="10,0,0,0">Drinks</Button>
+                    <Button x:Name="Payment_button"
+                            Click="Payment_Button_Click"
+                            Background="Gold"
+                            Width="330"
+                            Height="50"
+                            Margin="10,0,0,0"
+                            TextBlock.Foreground="Black">Payment</Button>
                 </WrapPanel>
-                <!--#region Dish menu buttons-->
-                <Grid 
-                    x:Name="Dish_Menu">
-                    <ScrollViewer 
-                        VerticalScrollBarVisibility="Auto" 
-                        CanContentScroll="True" 
-                        HorizontalAlignment="Right" 
-                        FlowDirection="LeftToRight">
-                        <WrapPanel x:Name="Dish_Menu_WrapPanel"
-                            Orientation="Horizontal"
-                            Margin="25">
-                        </WrapPanel>
-                    </ScrollViewer>
-                </Grid>
-                <!--#endregion Dish menu buttons-->
             </StackPanel>
+            <!--#endregion DishType Buttons-->
+            <!--#region DishMenu-->
+            <Grid x:Name="Dish_Menu"
+                  Grid.Row="1">
+                <ScrollViewer x:Name="Dish_Menu_ScrollViever"
+                              VerticalScrollBarVisibility="Auto"
+                              CanContentScroll="True"
+                              HorizontalAlignment="Left"
+                              FlowDirection="LeftToRight">
+                    <WrapPanel x:Name="Dish_Menu_WrapPanel"
+                               Orientation="Horizontal"
+                               Margin="25">
+                    </WrapPanel>
+                </ScrollViewer>
+                <Frame x:Name="Page_Frame"
+                       NavigationUIVisibility="Hidden"
+                       Visibility="Hidden" />
+            </Grid>
+            <!--#endregion DishMenu-->
         </Grid>
-        <!--#endregion RightSideMenu--> 
+        <!--#endregion RightSideMenu-->
         <!--#region  Footer Bar-->
-        <Grid 
-            x:Name="Footer_Bar"
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Background="BlueViolet" >
-            
+        <Grid x:Name="Footer_Bar"
+              Grid.Row="2"
+              Grid.ColumnSpan="2"
+              Background="BlueViolet">
+
         </Grid>
-        <!--#endregion Footer Bar--> 
+        <!--#endregion Footer Bar-->
     </Grid>
 </Window>

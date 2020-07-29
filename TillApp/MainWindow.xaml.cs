@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,9 +10,9 @@ using TillApp.Source;
 
 namespace TillApp
 {
-
     public partial class MainWindow : Window
     {
+        #region properties
         public enum DishTypes { Pho, Starters, Curry, Noodles, Kids, Sides }
         readonly RestaurantDatabaseEntities entities = new RestaurantDatabaseEntities();
         private readonly char[] buttonConstName = "Dish_Menu_Button_".ToArray();
@@ -26,8 +25,9 @@ namespace TillApp
         List<Dish> orderList = new List<Dish>();
         //Stores dish types
         DishTypes currentlySelectedType = new DishTypes();
-
         private double Total = 0f;
+
+        #endregion properties
 
         public MainWindow()
         {
@@ -36,9 +36,12 @@ namespace TillApp
             Clock clock = new Clock(Time_Label, Date_Label);
             clock.StartClock();
 
+            Page_Frame.Content = new Payment();
             PopulateListOfDishes();
             SelectDishes(DishTypes.Starters);
         }
+
+        #region methods
 
         /// <summary>
         /// Populates the list of dishes with dishes of all types.
@@ -68,6 +71,12 @@ namespace TillApp
         /// <param name="dishType">String of dish type.</param>
         public void SelectDishes(DishTypes dishType)
         {
+            if (Page_Frame.Visibility == Visibility.Visible)
+            {
+                Page_Frame.Visibility = Visibility.Hidden;
+                Dish_Menu_ScrollViever.Visibility = Visibility.Visible;
+            }
+
             if (dishType != currentlySelectedType)
             {
                 selectedDishList.Clear();
@@ -127,6 +136,8 @@ namespace TillApp
             }
         }
 
+        #endregion methods
+
         #region button click events
 
         private void Close_Button_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
@@ -174,8 +185,14 @@ namespace TillApp
             Total_Amount.Text = Total.ToString() + " zł";
         }
 
-        #endregion button click events
 
+        private void Payment_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Dish_Menu_ScrollViever.Visibility = Visibility.Hidden;
+            Page_Frame.Visibility = Visibility.Visible;
+        }
+
+        #endregion button click events
 
         #region mouse events
 
@@ -187,6 +204,4 @@ namespace TillApp
 
         #endregion mouse events
     }
-
-
 }

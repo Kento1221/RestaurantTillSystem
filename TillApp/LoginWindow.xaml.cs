@@ -1,81 +1,77 @@
 ﻿using EFDataAccess.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Data.Linq;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TillApp.Source;
 
 namespace TillApp
 {
     public partial class LoginWindow : Window
     {
-
-        RestaurantDatabaseEntities entities = new RestaurantDatabaseEntities();
+        readonly RestaurantDatabaseEntities entities = new RestaurantDatabaseEntities();
 
         public LoginWindow()
         {
             InitializeComponent();
             Clock clock = new Clock(Time_Label, Date_Label);
             clock.StartClock();
+
+            //Without the following line, the app experiences a brief freeze when pressing Enter button with correct username and password typed in. It doesn't take any data from database.
+            entities.Employees.Where(x=>x.Id == -1).Select(x => x.Id).ToArray();
+        }
+
+        private void Enter_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Username_Box.Text != String.Empty && Password_Box.Password != String.Empty)
+            {
+                if (Logger(Username_Box.Text, Password_Box.Password))
+                {
+                    var v = new MainWindow();
+                    v.Show();
+                    Close();
+                }
+                else
+                {
+                    Error_Label.Visibility = Visibility.Visible;
+                    ClearBoxes();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Matches username and password values in database.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns><para>
+        /// True: Match has been found
+        /// </para><para>
+        /// False: Match hasn't beed found
+        /// </para></returns>
+        private bool Logger(string username, string password)
+        {
+            return entities.Employees
+                        .Where(x => x.Username == username && x.Password == password)
+                        .Select(x => x.Username)
+                        .ToArray()
+                        .Length == 1;
         }
 
         private void Clear_Button_Click(object sender, RoutedEventArgs e) => ClearBoxes();
 
-        private void Enter_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (Username_Box.Text != String.Empty && Password_Box.Password != String.Empty)
-            {
-                try
-                {
-                    var employees = entities.Employees
-                            .Where(x => x.Username == Username_Box.Text && x.Password == Password_Box.Password)
-                            .ToList();
-
-                    if(employees.Count == 1)
-                    {
-                        var v = new MainWindow();
-                        v.Show();
-                        Close();
-                    }
-                    else 
-                    {
-                        Error_Label.Visibility = Visibility.Visible;
-                        ClearBoxes();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-
-            }
-
-        }
-
-        private void Close_Button_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
-
-
+        /// <summary>
+        /// Clears username and password textboxes.
+        /// </summary>
         private void ClearBoxes()
         {
             Username_Box.Text = String.Empty;
             Password_Box.Password = String.Empty;
         }
 
+        private void Close_Button_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
         private void Maximize_Button_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Maximized;
-
-        private void About_Button_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Created by Kamil Orkisz.");
+        private void About_Button_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Created by Kamil Orkisz. \n\nUsername: Kento1221\nPassword: Kamil");
     }
 }
