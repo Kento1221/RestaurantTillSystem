@@ -83,20 +83,20 @@
                 <StackPanel Orientation="Vertical">
                     <DockPanel LastChildFill="False"
                                Margin="0,15,0,5">
-                        <TextBlock x:Name="Waiter_Name"
+                        <TextBlock x:Name="Customer_Table_Name"
                                    DockPanel.Dock="Left"
                                    Margin="15,0,0,0"
                                    FontFamily="Arial"
                                    FontSize="24"
                                    FontWeight="Bold"
-                                   Text="" />
-                        <TextBlock x:Name="Customer_Table"
+                                   Text="Table_Name" />
+                        <TextBlock x:Name="Customer_Table_Number"
                                    DockPanel.Dock="Right"
                                    Margin="0,0,15,0"
                                    FontFamily="Arial"
                                    FontSize="24"
                                    FontWeight="Bold"
-                                   Text="T23" />
+                                   Text="T--" />
                     </DockPanel>
                     <DockPanel LastChildFill="False"
                                Margin="0,0,0,25">
@@ -105,13 +105,13 @@
                                    Margin="0,0,15,0"
                                    FontFamily="Arial"
                                    FontSize="18"
-                                   Text="04.07.2020" />
+                                   Text="--.--.----" />
                         <TextBlock x:Name="Customer_Time"
                                    DockPanel.Dock="Left"
                                    Margin="15,0,0,0"
                                    FontFamily="Arial"
                                    FontSize="18"
-                                   Text="13:54" />
+                                   Text="--:--" />
                     </DockPanel>
                     <ScrollViewer x:Name="Order_List_ScrollViewer"
                                   VerticalScrollBarVisibility="Auto"
@@ -247,7 +247,22 @@
               Grid.Row="2"
               Grid.ColumnSpan="2"
               Background="BlueViolet">
-
+            <StackPanel Orientation="Horizontal">
+                <Button Width="250"
+                        Background="LightGray"
+                        Margin="10,0,0,0"
+                        Content="New Table"
+                        Click="New_Table_Click"
+                        TextBlock.FontSize="18"
+                        TextBlock.Foreground="Black" />
+                <Button Width="250"
+                        Background="LightGray"
+                        Margin="10,0,0,0"
+                        Content="Change Table"
+                        Click="Change_Table_Click"
+                        TextBlock.FontSize="18"
+                        TextBlock.Foreground="Black" />
+            </StackPanel>
         </Grid>
         <!--#endregion Footer Bar-->
     </Grid>

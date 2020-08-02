@@ -195,12 +195,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GenericAlertWindow.xaml.cs">
+      <DependentUpon>GenericAlertWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Payment.xaml.cs">
       <DependentUpon>Payment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Clock.cs" />
     <Compile Include="Source\Dish.cs" />
-    <Compile Include="Source\OrderList.cs" />
+    <Compile Include="Source\Table.cs" />
+    <Compile Include="Source\TableInfo.cs" />
+    <Page Include="GenericAlertWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

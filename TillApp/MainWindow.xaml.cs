@@ -21,11 +21,14 @@ namespace TillApp
         List<Dish> dishList = new List<Dish>();
         //Stores dishes of type X
         List<Dish> selectedDishList = new List<Dish>();
-        //Stores ordered dishes
-        List<Dish> orderList = new List<Dish>();
         //Stores dish types
         DishTypes currentlySelectedType = new DishTypes();
-        private double Total = 0f;
+        //Stores all tables created
+        private List<Table> listOfTables = new List<Table>();
+        //Stores currently selected table
+        private Table currentTable;
+        //Doesn't allow adding items when table is not selected
+        private bool tableIsSelected = false;
 
         #endregion properties
 
@@ -66,9 +69,9 @@ namespace TillApp
         }
 
         /// <summary>
-        /// Selects a certain type of dish from populated dishList and prints it on the screen.
+        /// Selects a certain type of a dish from populated dishList and prints it on the screen.
         /// </summary>
-        /// <param name="dishType">String of dish type.</param>
+        /// <param name="dishType">String naming the dish type.</param>
         public void SelectDishes(DishTypes dishType)
         {
             if (Page_Frame.Visibility == Visibility.Visible)
@@ -91,14 +94,14 @@ namespace TillApp
         }
 
         /// <summary>
-        /// Creates buttons. Each of them is assigned a dish from selectedDishList.
+        /// Creates buttons. Each of them is assigned to a dish from selectedDishList.
         /// </summary>
         private void PrintButtons()
         {
             for (int i = 0; i < selectedDishList.Count; i++)
             {
                 Button button = new Button();
-                button.Name = "Dish_Menu_Button_"+i;
+                button.Name = "Dish_Menu_Button_" + i;
                 button.Click += Menu_Dish_Button_Click;
                 button.IsEnabled = true;
                 button.Visibility = Visibility.Visible;
@@ -118,22 +121,65 @@ namespace TillApp
         private void ClearButtons() => Dish_Menu_WrapPanel.Children.Clear();
 
         /// <summary>
-        /// Prints order items and prices from orderList list to the Order_List_Items and Order_List_Price textblock elements.
+        /// Prints order items and prices from currentTable.OrderedDishes list to the Order_List_Items and Order_List_Price textblock elements.
         /// </summary>
-        private void PrintOrderList( )
+        private void PrintOrderList()
         {
-            Order_List_Items.Text = String.Empty;
-            Order_List_Price.Text = String.Empty;
+            ClearItemDisplayList();
             int id = 1;
 
-            foreach (var item in orderList)
-            {                
+            foreach (var item in currentTable.OrderedDishes)
+            {
                 string price = item.Price.ToString();
                 if (price.Length == 2 || price.Length == 1) price += ",00";
-               
+
                 Order_List_Items.Text += id++ + ". " + item.Name.Trim() + "\n";
                 Order_List_Price.Text += price + "\n";
             }
+        }
+
+        /// <summary>
+        /// Clears the view of ordered dishes and total amount to pay.
+        /// </summary>
+        private void ClearItemDisplayList()
+        {
+            Order_List_Items.Text = String.Empty;
+            Order_List_Price.Text = String.Empty;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Table.
+        /// </summary>
+        private void CreateNewTable()
+        {
+            var window = new GenericAlertWindow();
+            window.CreateLabelValueView(
+                new string[] { "Table Number:", "Table Name:" }, 
+                new Type[] { typeof(int), typeof(string) }
+                );
+            
+            window.ShowDialog();
+            if (window.Values.Count != 0)
+            {
+                Table table = new Table(int.Parse(window.Values[0]), window.Values[1], "Kamil");
+                listOfTables.Add(table); //TODO: Proper WaiterName download
+                currentTable = listOfTables.Last();
+                tableIsSelected = true;
+                UpdateTableInfo();
+                ClearItemDisplayList();
+            }
+        }
+
+        /// <summary>
+        /// Updates name, number, time and date of the table displayed using data from the currentTable.
+        /// </summary>
+        /// <param name="table">Table to display info from.</param>
+        private void UpdateTableInfo()
+        {
+            Customer_Table_Name.Text = currentTable.TableName;
+            Customer_Table_Number.Text = "T" + currentTable.TableNumber;
+            Customer_Time.Text = currentTable.CreationDateTime.ToString("HH:mm:ss");
+            Customer_Date.Text = currentTable.CreationDateTime.ToString("dd.MM.yyyy");
         }
 
         #endregion methods
@@ -158,7 +204,7 @@ namespace TillApp
 
         private void Starters_button_Click(object sender, RoutedEventArgs e) => SelectDishes(DishTypes.Starters);
 
-        private void Pho_button_Click(object sender, RoutedEventArgs e) => SelectDishes(DishTypes.Pho); 
+        private void Pho_button_Click(object sender, RoutedEventArgs e) => SelectDishes(DishTypes.Pho);
 
         private void Curry_button_Click(object sender, RoutedEventArgs e) => SelectDishes(DishTypes.Curry);
 
@@ -170,21 +216,33 @@ namespace TillApp
 
         private void Menu_Dish_Button_Click(object sender, RoutedEventArgs e)
         {
-            //retrieving index from the button clicked.
-            Button button = (Button)sender;
-            string dishId = button.Name.Trim(buttonConstName);
+            if (tableIsSelected)
+            {
 
-            //Adding dish to Order_List text block and updating total.
-            Dish selectedDish = selectedDishList[Int32.Parse(dishId)];
-            orderList.Add(selectedDish);
+                //retrieving index from the button clicked.
+                Button button = (Button)sender;
+                string dishId = button.Name.Trim(buttonConstName);
 
-            PrintOrderList();
+                //Adding dish to Order_List text block and updating total.
+                Dish selectedDish = selectedDishList[Int32.Parse(dishId)];
+                var _table = listOfTables.Find(x => x.TableNumber == currentTable.TableNumber);
+                _table.OrderedDishes.Add(selectedDish);
+                _table.TotalPrice+=selectedDish.Price;
 
-            //Updating total to pay label
-            Total +=selectedDish.Price;
-            Total_Amount.Text = Total.ToString() + " zł";
+                PrintOrderList();
+
+                //Updating total to pay label
+                Total_Amount.Text = _table.TotalPrice + " zł"; 
+            }
+            else
+            {
+                MessageBoxResult messageBox = MessageBox.Show("No table is currently assigned. \nWould you like to create a new table?", "Empty Table", MessageBoxButton.YesNo);
+                if (messageBox == MessageBoxResult.Yes)
+                {
+                    CreateNewTable();
+                }
+            }
         }
-
 
         private void Payment_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -192,6 +250,15 @@ namespace TillApp
             Page_Frame.Visibility = Visibility.Visible;
         }
 
+        private void New_Table_Click(object sender, RoutedEventArgs e) => CreateNewTable();
+        
+        private void Change_Table_Click(object sender, RoutedEventArgs e)
+        {
+            GenericAlertWindow window = new GenericAlertWindow();
+            window.CreateSelectionView(listOfTables);
+            window.ShowDialog();
+        }
+         
         #endregion button click events
 
         #region mouse events
@@ -203,5 +270,6 @@ namespace TillApp
         }
 
         #endregion mouse events
+
     }
 }
